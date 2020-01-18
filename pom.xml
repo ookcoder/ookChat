@@ -104,6 +104,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -113,6 +114,11 @@
         <dependency>
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.lazerycode.selenium</groupId>
+            <artifactId>driver-binary-downloader-maven-plugin</artifactId>
+            <version>1.0.17</version>
         </dependency>
     </dependencies>
 
@@ -127,6 +133,14 @@
                 <configuration>
                     <wait>500</wait>
                     <maxAttempts>240</maxAttempts>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
                 </configuration>
             </plugin>
 
@@ -232,7 +246,7 @@
                             <enableAssertions>true</enableAssertions>
                             <systemPropertyVariables>
                                 <!-- Pass location of downloaded webdrivers to the tests -->
-                                <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+                                <webdriver.chrome.driver>79.0.3945.36</webdriver.chrome.driver>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
@@ -240,7 +254,6 @@
                     <plugin>
                         <groupId>com.lazerycode.selenium</groupId>
                         <artifactId>driver-binary-downloader-maven-plugin</artifactId>
-                        <version>1.0.17</version>
                         <configuration>
                             <onlyGetDriversForHostOperatingSystem>true
                             </onlyGetDriversForHostOperatingSystem>
