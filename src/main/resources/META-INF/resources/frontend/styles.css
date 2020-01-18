@@ -1,0 +1,18 @@
+.main-view h1 {
+    width: auto;
+    margin: 0;
+    padding: 20px;
+}
+
+.message-list {
+    overflow-y: scroll;
+    width: 100%;
+}
+
+.message-list p {
+    width: 100%;
+}
+
+.input-layout {
+    width: 100%;
+}
