@@ -74,9 +74,11 @@ public class MainView extends VerticalLayout {
         TextField messageField = new TextField();
 
         Button sendButton = new Button("Send", click -> {
-            publisher.onNext(new ChatMessage(username, messageField.getValue()));
-            messageField.clear();
-            messageField.focus();
+            if (!messageField.getValue().isEmpty()) {
+                publisher.onNext(new ChatMessage(username, messageField.getValue()));
+                messageField.clear();
+                messageField.focus();
+            }
         });
         messageField.focus();
         sendButton.addClickShortcut(Key.ENTER);
