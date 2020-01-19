@@ -1,9 +1,9 @@
-package com.ook.ookChat;
+package com.ook.ookChat.components;
 
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class MessageList extends Div {
+public class MessageList extends VerticalLayout {
     public MessageList() {
         addClassName("message-list");
     }

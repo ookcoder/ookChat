@@ -1,9 +1,10 @@
 package com.ook.ookChat;
 
+import com.ook.ookChat.components.MessageList;
+import com.ook.ookChat.components.ToggleMessage;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Push;
@@ -61,11 +62,16 @@ public class MainView extends VerticalLayout {
         MessageList messageList = new MessageList();
         expand(messageList);
         messages.subscribe(message -> {
-            getUI().ifPresent(ui -> ui.access(() -> messageList.add(new Paragraph(message.getFrom() + ": " + message.getMessage()))));
+            getUI().ifPresent(ui -> ui.access(() -> {
+                ToggleMessage button = new ToggleMessage(message);
+                button.addClickListener(click -> button.toggle());
+                messageList.add(button);
+            }));
         });
 
         HorizontalLayout inputLayout = new HorizontalLayout();
         TextField messageField = new TextField();
+
         Button sendButton = new Button("Send", click -> {
             publisher.onNext(new ChatMessage(username, messageField.getValue()));
             messageField.clear();
@@ -79,5 +85,4 @@ public class MainView extends VerticalLayout {
 
         add(messageList, inputLayout);
     }
-
 }
