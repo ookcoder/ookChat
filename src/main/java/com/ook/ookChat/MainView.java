@@ -2,6 +2,7 @@ package com.ook.ookChat;
 
 import com.ook.ookChat.components.MessageList;
 import com.ook.ookChat.components.ToggleMessage;
+import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.H1;
@@ -78,6 +79,7 @@ public class MainView extends VerticalLayout {
             messageField.focus();
         });
         messageField.focus();
+        sendButton.addClickShortcut(Key.ENTER);
 
         inputLayout.addClassName("input-layout");
         inputLayout.add(messageField, sendButton);
